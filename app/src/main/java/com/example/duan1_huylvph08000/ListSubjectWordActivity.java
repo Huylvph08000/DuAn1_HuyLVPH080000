@@ -1,12 +1,23 @@
 package com.example.duan1_huylvph08000;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,73 +25,86 @@ import java.util.ArrayList;
 
 public class ListSubjectWordActivity extends AppCompatActivity {
     ListView listView;
-    ListViewAdapter adapter;
-    String[] title;
-    String[] description;
-    int[] icon;
-    ArrayList<Model> arrayList = new ArrayList<Model>();
+    String mTitle[] = {"FOOD", "SPORTS", "MUSIC", "MOVIES", "TIME", "The World","Holidays and Festivals"};
+    String mDescription[] = {"Our food vocabulary ", "Learn general sports vocab", "Learn basic music vocab", "You can learn general vocabulary about movies", "Learn the vocab of time", "You can explore the vocabulary of numbers", "Vocabulary for some of the main religious and cultural festivals worldwide"};
+    int images[] = {R.drawable.food, R.drawable.sport, R.drawable.music, R.drawable.phim, R.drawable.world, R.drawable.fesival, R.drawable.youtube};
+    // so our images and other things are set in array
+
+    // now paste some images in drawable
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_subject_word);
-
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Items List");
-        title = new String[]{"People", "Life", "Traffic", "Du lịch", "Model", "Color"};
-        description = new String[]{"Battery detail...", "Cpu detail...", "Display detail...", "Memory detail...", "Sensor detail...", "Color detail..."};
-        icon = new int[]{R.drawable.bg, R.drawable.bgr, R.drawable.ic_book_black_24dp, R.drawable.bg, R.drawable.bgr,R.drawable.bgr};
-
-
         listView = findViewById(R.id.listView);
-        for (int i = 0; i < title.length; i++) {
-            Model model = new Model(title[i], description[i], icon[i]);
-            //bind all strings in an array
-            arrayList.add(model);
-        }
+        setTitle("Topic");
+        // now create an adapter class
 
-        //pass results to listViewAdapter class
-        adapter = new ListViewAdapter(this, arrayList);
-
-        //bind the adapter to the listview
+        MyAdapter adapter = new MyAdapter(this, mTitle, mDescription, images);
         listView.setAdapter(adapter);
+        // there is my mistake...
+        // now again check this..
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        MenuItem myActionMenuItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView)myActionMenuItem.getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        // now set item click on list view
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                if (TextUtils.isEmpty(s)){
-                    adapter.filter("");
-                    listView.clearTextFilter();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position ==  0) {
+                    Toast.makeText(ListSubjectWordActivity.this, "Our food vocabulary  ", Toast.LENGTH_SHORT).show();
                 }
-                else {
-                    adapter.filter(s);
+                if (position ==  1) {
+                    Toast.makeText(ListSubjectWordActivity.this, "Learn general sports vocab", Toast.LENGTH_SHORT).show();
                 }
-                return true;
+                if (position ==  2) {
+                    Toast.makeText(ListSubjectWordActivity.this, "Learn basic music vocab", Toast.LENGTH_SHORT).show();
+                }
+                if (position ==  3) {
+                    Toast.makeText(ListSubjectWordActivity.this, "You can learn general vocabulary about movies", Toast.LENGTH_SHORT).show();
+                }
+                if (position ==  4) {
+                    Toast.makeText(ListSubjectWordActivity.this, "Learn the vocab of time", Toast.LENGTH_SHORT).show();
+                }
+                if (position ==  5) {
+                    Toast.makeText(ListSubjectWordActivity.this, "You can explore the vocabulary of numbers", Toast.LENGTH_SHORT).show();
+                }
+                if (position ==  6) {
+                    Toast.makeText(ListSubjectWordActivity.this, "Vocabulary for some of the main religious and cultural festivals worldwide", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-return true;
+        // so item click is done now check list view
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        if (id==R.id.action_settings){
-            //do your functionality here
-            return true;
+    class MyAdapter extends ArrayAdapter<String> {
+
+        Context context;
+        String rTitle[];
+        String rDescription[];
+        int rImgs[];
+
+        MyAdapter (Context c, String title[], String description[], int imgs[]) {
+            super(c, R.layout.row, R.id.textView10, title);
+            this.context = c;
+            this.rTitle = title;
+            this.rDescription = description;
+            this.rImgs = imgs;
+
         }
-        return super.onOptionsItemSelected(item);
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View row = layoutInflater.inflate(R.layout.row, parent, false);
+            ImageView images = row.findViewById(R.id.image);
+            TextView myTitle = row.findViewById(R.id.textView10);
+            TextView myDescription = row.findViewById(R.id.textView20);
+
+            // now set our resources on views
+            images.setImageResource(rImgs[position]);
+            myTitle.setText(rTitle[position]);
+            myDescription.setText(rDescription[position]);
+            return row;
+        }
     }
 }

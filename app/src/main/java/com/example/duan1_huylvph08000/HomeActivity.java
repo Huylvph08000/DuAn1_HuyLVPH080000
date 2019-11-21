@@ -12,13 +12,18 @@ Intent intent;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        setTitle("English Learning");
     }
-    public void listen(View view){
+    public void Voca(View view){
         intent = new Intent(HomeActivity.this, ListSubjectWordActivity.class);
         startActivity(intent);
     }
     public void dictonary(View view){
         intent = new Intent(HomeActivity.this, DictonaryActivity.class);
+        startActivity(intent);
+    }
+    public void introduction(View view){
+        intent = new Intent(HomeActivity.this, IntroductionActivity.class);
         startActivity(intent);
     }
 }

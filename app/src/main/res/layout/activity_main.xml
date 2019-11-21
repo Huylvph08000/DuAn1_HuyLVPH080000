@@ -11,7 +11,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Huy's English Learing"
+        android:text="English Learing"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="30dp"
         android:textStyle="bold"

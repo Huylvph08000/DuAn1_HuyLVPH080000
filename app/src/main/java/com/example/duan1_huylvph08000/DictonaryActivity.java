@@ -29,6 +29,7 @@ public class DictonaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dictonary_activity_main);
+        setTitle("Dictonary");
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
         db= new DatabaseHelper(this);
