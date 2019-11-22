@@ -1,10 +1,15 @@
 package com.example.duan1_huylvph08000;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,11 +25,12 @@ public class DictonaryActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
     public static ArrayList<DictObjectModel> data;
-    DatabaseHelper db ;
+    DatabaseHelper db;
     ArrayList<String> wordcombimelist;
     ArrayList<String> meancombimelist;
-    LinkedHashMap<String,String> namelist;
+    LinkedHashMap<String, String> namelist;
     SearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +38,7 @@ public class DictonaryActivity extends AppCompatActivity {
         setTitle("Dictonary");
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
-        db= new DatabaseHelper(this);
+        db = new DatabaseHelper(this);
         searchView = (SearchView) findViewById(R.id.searchView);
         searchView.setQueryHint("Search Here");
         searchView.setQueryRefinementEnabled(true);
@@ -43,10 +49,11 @@ public class DictonaryActivity extends AppCompatActivity {
         fetchData();
 
 
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {return  false; }
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
             @Override
             public boolean onQueryTextChange(String newText) {
@@ -61,7 +68,7 @@ public class DictonaryActivity extends AppCompatActivity {
                     final String text = wordcombimelist.get(i).toLowerCase();
                     if (text.contains(newText)) {
 
-                        filteredList.add(new DictObjectModel(wordcombimelist.get(i),meancombimelist.get(i)));
+                        filteredList.add(new DictObjectModel(wordcombimelist.get(i), meancombimelist.get(i)));
                     }
                 }
                 adapter = new CustomAdapter(filteredList);
@@ -74,36 +81,34 @@ public class DictonaryActivity extends AppCompatActivity {
 
 
     }
-    public void fetchData()
-    {
-        db =new DatabaseHelper(this);
+
+    public void fetchData() {
+        db = new DatabaseHelper(this);
         try {
 
             db.createDataBase();
             db.openDataBase();
 
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
 
-        namelist=new LinkedHashMap<>();
+        namelist = new LinkedHashMap<>();
         int ii;
         SQLiteDatabase sd = db.getReadableDatabase();
-        Cursor cursor = sd.query("Dictionary1" ,null, null, null, null, null, null);
-        ii=cursor.getColumnIndex("word");
-        wordcombimelist=new ArrayList<String>();
-        meancombimelist= new ArrayList<String>();
-        while (cursor.moveToNext()){
+        Cursor cursor = sd.query("Dictionary1", null, null, null, null, null, null);
+        ii = cursor.getColumnIndex("word");
+        wordcombimelist = new ArrayList<String>();
+        meancombimelist = new ArrayList<String>();
+        while (cursor.moveToNext()) {
             namelist.put(cursor.getString(ii), cursor.getString(cursor.getColumnIndex("definition")));
         }
         Iterator entries = namelist.entrySet().iterator();
         while (entries.hasNext()) {
             Map.Entry thisEntry = (Map.Entry) entries.next();
             wordcombimelist.add(String.valueOf(thisEntry.getKey()));
-            meancombimelist.add("- "+String.valueOf(thisEntry.getValue()));
+            meancombimelist.add("- " + String.valueOf(thisEntry.getValue()));
         }
 
         for (int i = 0; i < wordcombimelist.size(); i++) {
@@ -111,5 +116,24 @@ public class DictonaryActivity extends AppCompatActivity {
         }
         adapter = new CustomAdapter(data);
         recyclerView.setAdapter(adapter);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu1, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_add:
+
+                Intent intent = new Intent(DictonaryActivity.this, HomeActivity.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
