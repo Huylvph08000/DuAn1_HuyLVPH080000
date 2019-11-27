@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".IntroductionActivity"></activity>
+        <activity android:name=".StructActivity"></activity>
+        <activity android:name=".IntroductionActivity" />
         <activity android:name=".DictonaryActivity" />
         <activity android:name=".NewActivity" />
         <activity android:name=".ListSubjectWordActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".Home.HomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

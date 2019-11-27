@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="10dp"
     android:background="@color/backgroundcolor"
-    tools:context=".HomeActivity">
+    tools:context=".Home.HomeActivity">
 
     <LinearLayout
         android:layout_marginTop="90dp"
@@ -21,12 +21,13 @@
         <androidx.cardview.widget.CardView
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
-            android:id="@+id/word"
+            android:id="@+id/Grammar"
             android:layout_width="160dp"
             android:layout_height="190dp"
             android:layout_margin="10dp">
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -62,15 +63,16 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/dictonary"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
-            android:id="@+id/bankcardId"
             android:layout_width="160dp"
             android:layout_height="190dp"
             android:layout_margin="10dp">
 
             <LinearLayout
-                android:onClick="dictonary"
+
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -118,8 +120,7 @@
         <androidx.cardview.widget.CardView
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
-            android:id="@+id/listen"
-            android:onClick="Voca"
+            android:id="@+id/Vocabulary"
             android:layout_width="160dp"
             android:layout_height="190dp"
             android:layout_margin="10dp">
@@ -168,7 +169,6 @@
             android:layout_margin="10dp">
 
             <LinearLayout
-                android:onClick="introduction"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
