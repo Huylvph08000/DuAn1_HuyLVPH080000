@@ -1,4 +1,4 @@
-package com.example.duan1_huylvph08000;
+package com.example.duan1_huylvph08000.dictonary;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,14 +15,16 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.duan1_huylvph08000.CustomAdapter;
 import com.example.duan1_huylvph08000.Home.HomeActivity;
+import com.example.duan1_huylvph08000.R;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class DictonaryActivity extends AppCompatActivity {
+public class DictonaryActivity extends AppCompatActivity implements DictonaryMVP.View{
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
@@ -32,12 +34,13 @@ public class DictonaryActivity extends AppCompatActivity {
     ArrayList<String> meancombimelist;
     LinkedHashMap<String, String> namelist;
     SearchView searchView;
-
+    DictonaryMVP.Presnter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dictonary_activity_main);
         setTitle("Dictonary");
+        presenter = new DictonaryPresenter(this);
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
         db = new DatabaseHelper(this);
@@ -95,7 +98,6 @@ public class DictonaryActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         namelist = new LinkedHashMap<>();
         int ii;
         SQLiteDatabase sd = db.getReadableDatabase();
@@ -132,10 +134,15 @@ public class DictonaryActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_add:
+                presenter.clickedGoHome();
 
-                Intent intent = new Intent(DictonaryActivity.this, HomeActivity.class);
-                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void goHome() {
+        Intent intent = new Intent(DictonaryActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.duan1_huylvph08000;
+package com.example.duan1_huylvph08000.Main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.duan1_huylvph08000.Home.HomeActivity;
+import com.example.duan1_huylvph08000.R;
 
 public class MainActivity extends AppCompatActivity   {
     private static int SPLASH_TIME_OUT = 4000;

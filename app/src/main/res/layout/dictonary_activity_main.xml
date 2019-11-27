@@ -9,7 +9,7 @@
     android:paddingTop="10dp"
     android:background="#CBD8DF"
     android:paddingBottom="10dp"
-    tools:context=".MainActivity">
+    tools:context=".Main.MainActivity">
     <SearchView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

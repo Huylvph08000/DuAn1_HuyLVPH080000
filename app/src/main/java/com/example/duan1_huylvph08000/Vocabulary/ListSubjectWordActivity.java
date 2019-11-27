@@ -1,4 +1,4 @@
-package com.example.duan1_huylvph08000;
+package com.example.duan1_huylvph08000.Vocabulary;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,57 +21,92 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.duan1_huylvph08000.Home.HomeActivity;
+import com.example.duan1_huylvph08000.Home.HomePresenter;
+import com.example.duan1_huylvph08000.R;
 
-public class ListSubjectWordActivity extends AppCompatActivity {
+public class ListSubjectWordActivity extends AppCompatActivity implements VocabularyMVP.View {
     ListView listView;
     String mTitle[] = {"FOOD", "SPORTS", "MUSIC", "MOVIES", "TIME", "The World", "Holidays and Festivals"};
     String mDescription[] = {"Our food vocabulary ", "Learn general sports vocab", "Learn basic music vocab", "You can learn general vocabulary about movies", "Learn the vocab of time", "You can explore the vocabulary of numbers", "Vocabulary for some of the main religious and cultural festivals worldwide"};
     int images[] = {R.drawable.food, R.drawable.sport, R.drawable.music, R.drawable.phim, R.drawable.world, R.drawable.fesival, R.drawable.youtube};
-    // so our images and other things are set in array
-
-    // now paste some images in drawable
-
+    VocabularyMVP.Presenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_subject_word);
         listView = findViewById(R.id.listView);
         setTitle("Topic");
-        // now create an adapter class
+        presenter = new VocabularyPresenter(this);
 
         MyAdapter adapter = new MyAdapter(this, mTitle, mDescription, images);
         listView.setAdapter(adapter);
-        // there is my mistake...
-        // now again check this..
 
-        // now set item click on list view
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
-                    Toast.makeText(ListSubjectWordActivity.this, "Our food vocabulary  ", Toast.LENGTH_SHORT).show();
+                    presenter.clickedTopic0();
                 }
                 if (position == 1) {
-                    Toast.makeText(ListSubjectWordActivity.this, "Learn general sports vocab", Toast.LENGTH_SHORT).show();
+                    presenter.clickedTopic1();
                 }
                 if (position == 2) {
-                    Toast.makeText(ListSubjectWordActivity.this, "Learn basic music vocab", Toast.LENGTH_SHORT).show();
+                    presenter.clickedTopic2();
                 }
                 if (position == 3) {
-                    Toast.makeText(ListSubjectWordActivity.this, "You can learn general vocabulary about movies", Toast.LENGTH_SHORT).show();
+                    presenter.clickedTopic3();
                 }
                 if (position == 4) {
-                    Toast.makeText(ListSubjectWordActivity.this, "Learn the vocab of time", Toast.LENGTH_SHORT).show();
+                    presenter.clickedTopic4();
                 }
                 if (position == 5) {
-                    Toast.makeText(ListSubjectWordActivity.this, "You can explore the vocabulary of numbers", Toast.LENGTH_SHORT).show();
+                    presenter.clickedTopic5();
                 }
                 if (position == 6) {
-                    Toast.makeText(ListSubjectWordActivity.this, "Vocabulary for some of the main religious and cultural festivals worldwide", Toast.LENGTH_SHORT).show();
+                    presenter.clickedTopic6();
                 }
             }
         });
         // so item click is done now check list view
+    }
+
+    @Override
+    public void topic0() {
+        Toast.makeText(ListSubjectWordActivity.this, "Our food vocabulary  ", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void topic1() {
+        Toast.makeText(ListSubjectWordActivity.this, "Learn general sports vocab", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void topic2() {
+        Toast.makeText(ListSubjectWordActivity.this, "Learn basic music vocab", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void topic3() {
+        Toast.makeText(ListSubjectWordActivity.this, "You can learn general vocabulary about movies", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void topic4() {
+        Toast.makeText(ListSubjectWordActivity.this, "Learn the vocab of time", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void topic5() {
+        Toast.makeText(ListSubjectWordActivity.this, "You can explore the vocabulary of numbers", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void topic6() {
+        Toast.makeText(ListSubjectWordActivity.this, "Vocabulary for some of the main religious and cultural festivals worldwide", Toast.LENGTH_SHORT).show();
+
     }
 
     class MyAdapter extends ArrayAdapter<String> {

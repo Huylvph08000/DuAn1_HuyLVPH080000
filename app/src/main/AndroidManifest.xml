@@ -9,13 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StructActivity"></activity>
-        <activity android:name=".IntroductionActivity" />
-        <activity android:name=".DictonaryActivity" />
+        <activity android:name=".Grammar.StructActivity"></activity>
+        <activity android:name=".Introduction.IntroductionActivity" />
+        <activity android:name=".dictonary.DictonaryActivity" />
         <activity android:name=".NewActivity" />
-        <activity android:name=".ListSubjectWordActivity" />
+        <activity android:name=".Vocabulary.ListSubjectWordActivity" />
         <activity android:name=".Home.HomeActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

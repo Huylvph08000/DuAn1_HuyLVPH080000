@@ -7,11 +7,11 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.example.duan1_huylvph08000.DictonaryActivity;
-import com.example.duan1_huylvph08000.IntroductionActivity;
-import com.example.duan1_huylvph08000.ListSubjectWordActivity;
+import com.example.duan1_huylvph08000.dictonary.DictonaryActivity;
+import com.example.duan1_huylvph08000.Introduction.IntroductionActivity;
+import com.example.duan1_huylvph08000.Vocabulary.ListSubjectWordActivity;
 import com.example.duan1_huylvph08000.R;
-import com.example.duan1_huylvph08000.StructActivity;
+import com.example.duan1_huylvph08000.Grammar.StructActivity;
 
 public class HomeActivity extends AppCompatActivity implements HomeMVP.View, View.OnClickListener{
 Intent intent;

@@ -1,8 +1,10 @@
-package com.example.duan1_huylvph08000;
+package com.example.duan1_huylvph08000.Grammar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.duan1_huylvph08000.R;
 
 public class StructActivity extends AppCompatActivity {
 
