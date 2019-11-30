@@ -29,6 +29,6 @@ public class HomePresenter implements HomeMVP.Presenter {
 
     @Override
     public void clickedExist() {
-        view.exist();
+        view.exit();
     }
 }

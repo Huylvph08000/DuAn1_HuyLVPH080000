@@ -6,7 +6,7 @@ public interface HomeMVP {
         void goVocabulary();
         void goDictonary();
         void goIntroduction();
-        void exist();
+        void exit();
     }
     interface Presenter{
         void clickedGrammar();

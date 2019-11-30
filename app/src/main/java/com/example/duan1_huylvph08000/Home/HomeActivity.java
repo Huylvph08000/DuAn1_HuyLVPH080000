@@ -86,7 +86,7 @@ HomeMVP.Presenter presenter;
     }
 
     @Override
-    public void exist() {
+    public void exit() {
       finish();
     }
 
