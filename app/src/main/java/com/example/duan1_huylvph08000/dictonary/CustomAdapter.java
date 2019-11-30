@@ -1,4 +1,4 @@
-package com.example.duan1_huylvph08000;
+package com.example.duan1_huylvph08000.dictonary;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.duan1_huylvph08000.dictonary.DictObjectModel;
+import com.example.duan1_huylvph08000.R;
 
 import java.util.ArrayList;
 

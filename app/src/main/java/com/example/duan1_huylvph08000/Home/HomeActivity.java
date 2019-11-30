@@ -2,14 +2,18 @@ package com.example.duan1_huylvph08000.Home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.duan1_huylvph08000.Vocabulary.SubjectsWordActivity;
 import com.example.duan1_huylvph08000.dictonary.DictonaryActivity;
 import com.example.duan1_huylvph08000.Introduction.IntroductionActivity;
-import com.example.duan1_huylvph08000.Vocabulary.ListSubjectWordActivity;
 import com.example.duan1_huylvph08000.R;
 import com.example.duan1_huylvph08000.Grammar.StructActivity;
 
@@ -65,7 +69,7 @@ HomeMVP.Presenter presenter;
 
     @Override
     public void goVocabulary() {
-        intent = new Intent(HomeActivity.this, ListSubjectWordActivity.class);
+        intent = new Intent(HomeActivity.this, SubjectsWordActivity.class);
         startActivity(intent);
     }
 
@@ -79,6 +83,11 @@ HomeMVP.Presenter presenter;
     public void goIntroduction() {
         intent = new Intent(HomeActivity.this, IntroductionActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void exist() {
+      finish();
     }
 
     @Override
@@ -99,5 +108,20 @@ HomeMVP.Presenter presenter;
              default:
                  break;
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.thoat, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.Exist:
+presenter.clickedExist();
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

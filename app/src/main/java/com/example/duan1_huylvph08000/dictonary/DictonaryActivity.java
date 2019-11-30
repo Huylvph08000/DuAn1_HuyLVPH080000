@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.duan1_huylvph08000.CustomAdapter;
 import com.example.duan1_huylvph08000.Home.HomeActivity;
 import com.example.duan1_huylvph08000.R;
 
@@ -40,11 +39,9 @@ public class DictonaryActivity extends AppCompatActivity implements DictonaryMVP
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dictonary_activity_main);
         setTitle("Dictonary");
-        presenter = new DictonaryPresenter(this);
-        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        findViewById();
         recyclerView.setHasFixedSize(true);
         db = new DatabaseHelper(this);
-        searchView = (SearchView) findViewById(R.id.searchView);
         searchView.setQueryHint("Search Here");
         searchView.setQueryRefinementEnabled(true);
         layoutManager = new LinearLayoutManager(this);
@@ -53,7 +50,7 @@ public class DictonaryActivity extends AppCompatActivity implements DictonaryMVP
         data = new ArrayList<DictObjectModel>();
         fetchData();
 
-
+//
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -85,6 +82,12 @@ public class DictonaryActivity extends AppCompatActivity implements DictonaryMVP
         });
 
 
+    }
+
+    private void findViewById() {
+        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        searchView = (SearchView) findViewById(R.id.searchView);
+        presenter = new DictonaryPresenter(this);
     }
 
     public void fetchData() {
@@ -133,7 +136,7 @@ public class DictonaryActivity extends AppCompatActivity implements DictonaryMVP
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_add:
+            case R.id.backHome:
                 presenter.clickedGoHome();
 
         }

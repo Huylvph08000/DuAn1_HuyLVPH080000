@@ -26,4 +26,9 @@ public class HomePresenter implements HomeMVP.Presenter {
     public void clickedIntroduction() {
     view.goIntroduction();
     }
+
+    @Override
+    public void clickedExist() {
+        view.exist();
+    }
 }

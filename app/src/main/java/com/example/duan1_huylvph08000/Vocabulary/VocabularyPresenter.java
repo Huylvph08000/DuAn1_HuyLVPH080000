@@ -6,39 +6,38 @@ public class VocabularyPresenter implements VocabularyMVP.Presenter {
     public VocabularyPresenter(VocabularyMVP.View view) {
         this.view = view;
     }
-
     @Override
     public void clickedTopic0() {
-        view.topic0();
+view.topic0();
     }
 
     @Override
     public void clickedTopic1() {
-    view.topic1();
+view.topic1();
     }
 
     @Override
     public void clickedTopic2() {
-    view.topic2();
+view.topic2();
     }
 
     @Override
     public void clickedTopic3() {
-    view.topic3();
+view.topic3();
     }
 
     @Override
     public void clickedTopic4() {
-    view.topic4();
+view.topic4();
     }
 
     @Override
     public void clickedTopic5() {
-    view.topic5();
+view.topic5();
     }
 
     @Override
     public void clickedTopic6() {
-    view.topic6();
+view.topic6();
     }
 }

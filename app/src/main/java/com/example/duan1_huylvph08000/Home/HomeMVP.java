@@ -6,11 +6,13 @@ public interface HomeMVP {
         void goVocabulary();
         void goDictonary();
         void goIntroduction();
+        void exist();
     }
     interface Presenter{
         void clickedGrammar();
         void clickedVocabulary();
         void clickedDictonary();
         void clickedIntroduction();
+        void clickedExist();
     }
 }
